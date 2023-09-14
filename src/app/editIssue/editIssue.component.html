@@ -1,0 +1,43 @@
+
+
+  <div class="container mt-3">
+    <h2>Edit Issue</h2>
+    <form #formRef="ngForm" name="editIssueForm" (ngSubmit)="updateIssue()">
+      <div class="mb-3 mt-3">
+        <label for="description">Description</label>
+        <input type="text" class="form-control" id="description"  name="description"
+          [(ngModel)]="issue.description" required minlength="5" #desRef="ngModel" />
+        <div *ngIf="desRef.invalid && (desRef.dirty || desRef.touched)" class="alert alert-denger">
+          <div *ngIf="desRef.errors?.['required']">
+            Description is required!
+          </div>
+          <div *ngIf="desRef.errors?.['minlength']">
+            Description must be at least 5 character long!
+          </div>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="inputSeverity" class="form-label">Severity</label>
+        <select id="inputSeverity" class="form-select" name="severity"  [(ngModel)]="issue.severity">
+          <option selected="">Minor</option>
+          <option>Major</option>
+          <option>Critical</option>
+        </select>
+      </div>
+
+      <label>Status</label>
+
+      <div class="form-check" *ngFor="let st of statuss">
+
+        <input class="form-check-input" id="status_NAME{{st}}" type="radio"  name="redioSelected" [value]='st'
+          [(ngModel)]="issue.status">
+        <label class="form-check-label">{{st}}</label>
+
+      </div>
+
+
+      <hr>
+      <button type="submit" value="submit" class="btn btn-primary"  [disabled]="!formRef.dirty">Update</button>
+    </form>
+  </div>
+

@@ -1,0 +1,29 @@
+
+
+<h2> Issue List </h2>
+<hr>
+<div class="issueTable">
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Issue Description</th>
+      <th>Severity</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let issue of issues">
+      <td ><a [routerLink]="['issueDetails' , issue.id]" routerLinkActive="active">{{issue.description}}</a></td>
+      <td>{{issue.severity}}</td>
+      <td>{{issue.status}}</td>
+      <td><button type="button" class="btn btn-outline-primary" (click)="editIssue(issue.id)">Edit</button></td>
+      <td><button type="button" class="btn btn-outline-primary" (click)="deleteIssue(issue.id)">Delete</button></td>
+    </tr>
+  </tbody>
+</table>
+
+</div>
+
+<hr>
+
+<button type="button" class="btn btn-light"><a routerLink="addIssue" routerLinkActive="active"> Add Issue </a></button>
